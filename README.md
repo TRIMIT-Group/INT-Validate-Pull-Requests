@@ -22,5 +22,5 @@ jobs:
     runs-on: ubuntu-latest
     name: Perform TRIMIT Group checks
     steps:
-      - uses: knawat/github-actions-gitflow@v1
+      - uses: ????
 ```
