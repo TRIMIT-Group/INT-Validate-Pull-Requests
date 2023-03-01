@@ -1,10 +1,13 @@
-name: 'Check TRIMIT Group Rulesets'
-description: 'Check various rules on pull requests based on TRIMIT Groups Git Flow methodology.'
+name: 'Pull Request validation'
+description: 'Validate Pull Request against ruleset.'
 inputs:
   develop-branch-name:
-    description: 'Name of your develop branch'
+    description: 'Name of your develop branch (default: develop)'
     required: true
     default: 'develop'
+  ignore_branches:
+    description: 'Comma separated list of branch names to ignore (default: main,develop)'
+    default: 'master'
 runs:
   using: "composite"
   steps:
