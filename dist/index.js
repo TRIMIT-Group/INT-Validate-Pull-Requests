@@ -43,35 +43,15 @@ async function runValidation() {
             }
 
             // Check if branch is heading in the right direction
-
-            if (payload.base.ref = '') {
-
+            switch(payload.base.ref) {
+                case branchDevelop: // if towards develop branch
+                    if (!branchName.startsWith(prefixFeature) && !branchName.startsWith(prefixAlign)) {
+                        core.setFailed(`Pull Request towards ${branchName} branch requires. Did not match any of the allowed prefixes: ${prefixFeature}, ${prefixHotfix}, ${prefixAlign}`);
+                        return;
+                    }
+                case branchMain: // if towards main branch
+                    
             }
-        }
-
-        // core.info(`Branch name: ${branchName}`);
-        
-        // Check if branch is to be ignored
-        // const ignore = core.getInput('ignore');
-        // if (ignore.length > 0 && ignore.split(',').some((el) => branchName === el)) {
-        //     core.info(`Skipping checks since ${branchName} is in the ignored list - ${ignore}`);
-        //     return;
-        // }
-
-        // Check if branch pass regex
-        // const regex = RegExp(core.getInput('regex'));
-        // core.info(`Regex: ${regex}`);
-        // if (!regex.test(branch)) {
-        //     core.setFailed(`Branch ${branch} failed to pass match regex - ${regex}`);
-        //     return;
-        // }
-
-        // Check if branch starts with a prefix
-        const prefixes = core.getInput('allowed_prefixes');
-        core.info(`Allowed Prefixes: ${prefixes}`);
-        if (prefixes.length > 0 && !prefixes.split(',').some((el) => branch.startsWith(el))) {
-            core.setFailed(`Branch ${branch} failed did not match any of the prefixes - ${prefixes}`);
-            return;
         }
     } catch (error) {
         core.setFailed(error.message);
